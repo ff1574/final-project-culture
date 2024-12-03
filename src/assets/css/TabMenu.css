@@ -1,0 +1,11 @@
+.tab-menu {
+  margin-bottom: 2em;
+}
+
+.tab-menu .p-tabmenu-nav {
+  border-radius: 8px;
+}
+
+.tab-menu .p-tabmenu-nav .p-tabmenuitem {
+  font-size: 1.1em;
+}

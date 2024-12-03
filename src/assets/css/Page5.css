@@ -1,0 +1,40 @@
+.page-container {
+  padding: 2em;
+  background: #f9fafb;
+  font-family: "Arial", sans-serif;
+  line-height: 1.8;
+  color: #333;
+}
+
+.intro-section h1 {
+  text-align: center;
+  color: #003366;
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+.intro-section p {
+  font-size: 1.2em;
+  text-align: center;
+  color: #555;
+}
+
+.technology-section h2,
+.word-cloud-section h2,
+.story-section h2 {
+  text-align: center;
+  color: #003366;
+  margin: 2em 0;
+}
+
+.technology-section ul {
+  list-style: disc;
+  margin-left: 2em;
+  font-size: 1.1em;
+  color: #555;
+}
+
+.word-cloud-section .chart {
+  max-width: 600px;
+  margin: 0 auto;
+}

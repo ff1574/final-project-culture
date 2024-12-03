@@ -1,0 +1,94 @@
+.page-container {
+  padding: 2em;
+  background: #f9fafb;
+  font-family: "Arial", sans-serif;
+  line-height: 1.8;
+  color: #333;
+}
+
+/* Introduction Section */
+.intro-section h1 {
+  text-align: center;
+  color: #003366;
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+.intro-section p {
+  font-size: 1.2em;
+  text-align: center;
+  color: #555;
+}
+
+/* Challenges Section */
+.challenges-section h2 {
+  text-align: center;
+  color: #003366;
+  margin: 2em 0;
+}
+
+.challenges-section ul {
+  list-style: disc;
+  margin-left: 2em;
+  font-size: 1.1em;
+  color: #555;
+}
+
+/* Visual Section */
+.visual-section h2 {
+  text-align: center;
+  color: #003366;
+  margin: 2em 0;
+}
+
+.chart {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+/* Projects Section */
+.projects-section h2 {
+  text-align: center;
+  color: #003366;
+  margin: 2em 0;
+}
+
+.project-panel {
+  margin: 1em 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1em;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.project-panel a {
+  color: #42a5f5;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.project-panel a:hover {
+  text-decoration: underline;
+}
+
+/* Revival Tips Section */
+.revival-section h2 {
+  text-align: center;
+  color: #003366;
+  margin: 2em 0;
+}
+
+.revival-tips {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5em;
+}
+
+.revival-tip-panel {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1em;
+  background: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

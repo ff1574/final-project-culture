@@ -1,0 +1,85 @@
+.page-container {
+  padding: 2em;
+  background: #f9fafb;
+  font-family: "Verdana", sans-serif;
+  line-height: 1.8;
+  color: #333;
+}
+
+/* Header Panel Styling */
+.header-panel {
+  margin-bottom: 2em;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  padding: 1.5em;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Section Header Styling */
+.section-header {
+  text-align: center;
+  font-size: 1.5em;
+  color: #003366;
+  margin: 2em 0;
+}
+
+/* Timeline Styling */
+.timeline .p-timeline-event-opposite {
+  font-size: 1em;
+  color: #555;
+}
+
+.timeline .p-timeline-event-content {
+  padding: 1em;
+  border: 1px solid #ddd;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Archetypes Panel Styling */
+.archetypes-panel {
+  margin-top: 2em;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  padding: 1.5em;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.archetypes-panel ul {
+  padding-left: 1.5em;
+}
+
+.archetypes-panel li {
+  margin-bottom: 1em;
+  color: #555;
+}
+
+/* Carousel Styling */
+.books-carousel .book-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #ffffff;
+  padding: 1.5em;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.books-carousel .book-card h3 {
+  font-size: 1.2em;
+  color: #003366;
+  margin-bottom: 0.5em;
+}
+
+.books-carousel .book-card h4 {
+  font-size: 1em;
+  color: #555;
+  margin-bottom: 1em;
+}
+
+.books-carousel .book-card p {
+  font-size: 0.9em;
+  color: #666;
+}

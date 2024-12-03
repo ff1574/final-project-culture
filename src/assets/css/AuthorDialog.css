@@ -1,0 +1,31 @@
+.author-dialog .p-dialog-header {
+  text-align: center;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+}
+
+.dialog-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2em 1em;
+}
+
+.author-avatar {
+  min-width: 60%;
+  min-height: auto;
+  margin-bottom: 1.5em;
+  background-color: #000000; /* Adds a subtle background to the avatar */
+  color: #fff;
+}
+
+.author-description {
+  font-size: 1em;
+  color: #555;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0 1em;
+}

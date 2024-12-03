@@ -119,6 +119,25 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+.example-content {
+  display: flex;
+  gap: 1em;
+}
+
+.example-image {
+  width: 200px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer; /* Indicate clickable */
+  transition: transform 0.2s ease;
+}
+
+.example-image:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
 .example-card h2 {
   font-size: 1.2em;
   color: #003366;
@@ -127,6 +146,7 @@
 .example-card p {
   color: #555;
   font-size: 1em;
+  flex: 1;
 }
 
 /* Responsive Adjustments */
@@ -148,7 +168,22 @@
     padding: 1em;
   }
 
+  .example-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .example-image {
+    width: 70%;
+    height: auto;
+  }
+
   .example-card {
     padding: 1em;
+  }
+
+  .example-card p {
+    font-size: 0.9em;
   }
 }

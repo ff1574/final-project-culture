@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { Card } from "primereact/card";
 import { DataView } from "primereact/dataview";
 import { Panel } from "primereact/panel";
 import { Timeline } from "primereact/timeline";
 import { Chart } from "primereact/chart";
+import { Dialog } from "primereact/dialog";
 import TabMenuComponent from "../components/TabMenuComponent";
 import "../assets/css/Page1.css";
 
@@ -14,24 +15,28 @@ const folkloreExamples = [
     story: "Anansi the Spider",
     summary:
       "Anansi, a cunning and wise spider, is a beloved figure in African folklore, particularly in Ghana. He uses his cleverness to outsmart others, often imparting lessons about morality, greed, and resourcefulness.",
+    image: "/assets/images/anansi.webp",
   },
   {
     region: "Europe",
     story: "Robin Hood",
     summary:
       "Robin Hood is a legendary outlaw from medieval England who lived in Sherwood Forest. Known for 'robbing the rich to feed the poor,' he is a symbol of justice and resistance against corruption.",
+    image: "/assets/images/robin_hood.webp",
   },
   {
     region: "Asia",
     story: "The Monkey King (Sun Wukong)",
     summary:
       "Sun Wukong, the Monkey King, is a central figure in the Chinese classic Journey to the West. Born from a magical stone, he possesses incredible strength and shape-shifting abilities.",
+    image: "/assets/images/sun_wukong.webp",
   },
   {
     region: "North America",
     story: "Paul Bunyan",
     summary:
       "Paul Bunyan, a giant lumberjack, is a symbol of the American frontier spirit. His tales celebrate ingenuity, exploration, and the rugged determination of early settlers.",
+    image: "/assets/images/paul_bunyan.webp",
   },
 ];
 
@@ -62,16 +67,6 @@ const folkloreTimeline = [
   },
 ];
 
-const itemTemplate = (example) => (
-  <Card
-    title={example.story}
-    subTitle={example.region}
-    className="example-card"
-  >
-    <p>{example.summary}</p>
-  </Card>
-);
-
 const folkloreImpactData = {
   labels: [
     "Cultural Preservation",
@@ -89,6 +84,34 @@ const folkloreImpactData = {
 };
 
 const Page1 = () => {
+  const [dialogVisible, setDialogVisible] = useState(false); // State for dialog visibility
+  const [dialogTitle, setDialogTitle] = useState("");
+  const [dialogImage, setDialogImage] = useState("");
+
+  const handleImageClick = (imageSrc, dialogTitle) => {
+    setDialogImage(imageSrc);
+    setDialogTitle(dialogTitle)
+    setDialogVisible(true);
+  };
+
+  const itemTemplate = (example) => (
+    <Card
+      title={example.story}
+      subTitle={example.region}
+      className="example-card"
+    >
+      <div className="example-content">
+        <img
+          src={example.image}
+          alt={example.story}
+          className="example-image"
+          onClick={() => handleImageClick(example.image, example.story)} 
+        />
+        <p>{example.summary}</p>
+      </div>
+    </Card>
+  );
+
   return (
     <div className="page-container">
       {/* TabMenu for Navigation */}
@@ -256,6 +279,16 @@ const Page1 = () => {
         itemTemplate={itemTemplate}
         className="examples-list"
       />
+
+      {/* Image Dialog */}
+      <Dialog
+        visible={dialogVisible}
+        onHide={() => setDialogVisible(false)}
+        style={{ width: "90%", maxWidth: "600px" }} // Responsive width
+        header={dialogTitle}
+      >
+        <img src={dialogImage} alt="Expanded" style={{ width: "100%" }} />
+      </Dialog>
     </div>
   );
 };

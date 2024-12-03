@@ -1,0 +1,15 @@
+.hero-section {
+  background-image: url("/assets/images/redpattern2.png");
+  background-repeat: repeat;
+  /* color: aliceblue; */
+}
+
+.hero-section h1 {
+  padding: 0.5em;
+  background-color: white;
+}
+
+.hero-section p {
+  padding: 0.5em;
+  background-color: white;
+}

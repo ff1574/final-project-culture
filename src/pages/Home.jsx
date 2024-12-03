@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import BlogPostCard from "../components/BlogPostCard";
 import { Button } from "primereact/button";
 import { Carousel } from "primereact/carousel";
+import "../assets/css/Home.css";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -51,7 +52,7 @@ const Home = () => {
       {/* Hero Section */}
       <section
         className="hero-section"
-        style={{ textAlign: "center", padding: "4em 0", background: "#f0f4ff" }}
+        style={{ textAlign: "center", padding: "4em 0" }}
       >
         <h1>Folklore in Modern Literature & Culture</h1>
         <p>

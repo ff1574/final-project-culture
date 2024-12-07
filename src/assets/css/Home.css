@@ -7,9 +7,13 @@
 .hero-section h1 {
   padding: 0.5em;
   background-color: white;
+  border-top: 3px solid #f05c50;
+  border-bottom: 3px solid #f05c50;
 }
 
 .hero-section p {
   padding: 0.5em;
   background-color: white;
+  border-top: 3px solid #f05c50;
+  border-bottom: 3px solid #f05c50;
 }

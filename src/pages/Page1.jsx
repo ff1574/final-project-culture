@@ -86,11 +86,13 @@ const folkloreImpactData = {
 const Page1 = () => {
   const [dialogVisible, setDialogVisible] = useState(false); // State for dialog visibility
   const [dialogTitle, setDialogTitle] = useState("");
+  const [dialogText, setDialogText] = useState("");
   const [dialogImage, setDialogImage] = useState("");
 
-  const handleImageClick = (imageSrc, dialogTitle) => {
+  const handleImageClick = (imageSrc, dialogTitle, dialogText) => {
     setDialogImage(imageSrc);
-    setDialogTitle(dialogTitle)
+    setDialogTitle(dialogTitle);
+    setDialogText(dialogText);
     setDialogVisible(true);
   };
 
@@ -105,7 +107,9 @@ const Page1 = () => {
           src={example.image}
           alt={example.story}
           className="example-image"
-          onClick={() => handleImageClick(example.image, example.story)} 
+          onClick={() =>
+            handleImageClick(example.image, example.story, example.summary)
+          }
         />
         <p>{example.summary}</p>
       </div>
@@ -288,6 +292,7 @@ const Page1 = () => {
         header={dialogTitle}
       >
         <img src={dialogImage} alt="Expanded" style={{ width: "100%" }} />
+        <p>{dialogText}</p>
       </Dialog>
     </div>
   );

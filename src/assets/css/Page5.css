@@ -20,92 +20,71 @@
   color: #555;
 }
 
-/* Section Headers */
-.technology-section h2,
-.word-cloud-section h2,
-.contribution-section h2 {
+/* Quiz Section */
+.quiz-section {
   text-align: center;
-  color: #003366;
-  margin: 2em 0 1em;
+  margin-top: 2em;
 }
 
-/* Technology Section */
-.technology-section ul {
-  list-style: disc;
-  margin-left: 2em;
-  font-size: 1.1em;
-  color: #555;
-}
-
-.technology-section ul li {
-  margin-bottom: 1em;
-}
-
-/* Word Cloud Section */
-.word-cloud-section .chart {
-  max-width: 600px;
-  margin: 0 auto;
-}
-
-/* Contribution Section */
-.contribution-section p {
-  text-align: center;
-  font-size: 1.1em;
-  color: #555;
-  margin-bottom: 1em;
-}
-
-.input-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 2em;
-}
-
-.input-section .p-inputtextarea {
-  width: 80%;
-  max-width: 600px;
-  margin-bottom: 1em;
-}
-
-.submit-button {
+.start-quiz-button {
+  margin-top: 1em;
   background-color: #003366;
   color: #fff;
-  border: none;
 }
 
-.submit-button:hover {
+.start-quiz-button:hover {
   background-color: #0055a5;
 }
 
-/* Dialog Styling */
-.p-dialog .p-dialog-header {
-  background-color: #003366;
+/* Quiz Dialog */
+.quiz-dialog {
+  text-align: center;
+}
+
+.quiz-dialog h3 {
+  color: #003366;
+  margin-bottom: 1em;
+}
+
+.quiz-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  margin-top: 1em;
+}
+
+.quiz-option {
+  width: 100%;
+}
+
+.quiz-result h3 {
+  color: #003366;
+  margin-bottom: 1em;
+}
+
+.quiz-option.correct {
+  background-color: #4caf50 !important;
+  color: white !important;
+}
+
+.quiz-option.incorrect {
+  background-color: #f44336 !important;
+  color: white !important;
+}
+
+.restart-button {
+  background-color: #36a2eb;
   color: #fff;
 }
 
-.p-dialog .p-dialog-content {
-  text-align: center;
-  font-size: 1.1em;
-}
-
-.p-dialog .p-dialog-content p {
-  margin-top: 1em;
+.restart-button:hover {
+  background-color: #0055a5;
 }
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-  .intro-section h1 {
-    font-size: 1.5em;
-  }
-
-  .intro-section p,
-  .technology-section ul,
-  .contribution-section p {
-    font-size: 1em;
-  }
-
-  .input-section .p-inputtextarea {
-    width: 95%;
+  .quiz-dialog,
+  .quiz-result {
+    text-align: center;
   }
 }

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Chart } from "primereact/chart";
-import { InputTextarea } from "primereact/inputtextarea";
 import { Button } from "primereact/button";
 import { Dialog } from "primereact/dialog";
 import TabMenuComponent from "../components/TabMenuComponent";
@@ -47,15 +46,97 @@ const wordCloudData = {
   ],
 };
 
-const Page5 = () => {
-  const [story, setStory] = useState("");
-  const [dialogVisible, setDialogVisible] = useState(false);
+const quizQuestions = [
+  {
+    question: "What is the Norse World Tree called?",
+    options: ["Yggdrasil", "Asgard", "Midgard", "Valhalla"],
+    answer: "Yggdrasil",
+  },
+  {
+    question: "Who is the trickster god in Norse mythology?",
+    options: ["Thor", "Loki", "Odin", "Freyr"],
+    answer: "Loki",
+  },
+  {
+    question: "Which culture is associated with the Monkey King?",
+    options: ["Chinese", "Japanese", "Korean", "Vietnamese"],
+    answer: "Chinese",
+  },
+  {
+    question: "What did Prometheus steal from the gods to give to humans?",
+    options: ["Water", "Fire", "Knowledge", "Immortality"],
+    answer: "Fire",
+  },
+  {
+    question: "Who is the Greek god of the underworld?",
+    options: ["Zeus", "Poseidon", "Hades", "Apollo"],
+    answer: "Hades",
+  },
+  {
+    question:
+      "Which folklore character is known for 'robbing the rich to feed the poor'?",
+    options: ["Robin Hood", "King Arthur", "Paul Bunyan", "Beowulf"],
+    answer: "Robin Hood",
+  },
+  {
+    question: "In Japanese mythology, what is Amaterasu the goddess of?",
+    options: ["Moon", "Sun", "Storms", "Harvest"],
+    answer: "Sun",
+  },
+  {
+    question:
+      "What creature is associated with the Chinese Zodiac Year of the Dragon?",
+    options: ["Phoenix", "Lion", "Dragon", "Tiger"],
+    answer: "Dragon",
+  },
+  {
+    question:
+      "What is the Native American folklore creature that transforms and tricks people?",
+    options: ["Coyote", "Bear", "Wolf", "Eagle"],
+    answer: "Coyote",
+  },
+  {
+    question:
+      "Which legend is known for pulling a sword from a stone to become king?",
+    options: ["Beowulf", "Robin Hood", "King Arthur", "Gilgamesh"],
+    answer: "King Arthur",
+  },
+];
 
-  const handleStorySubmit = () => {
-    if (story.trim() !== "") {
-      setDialogVisible(true);
-      setStory("");
+const Page5 = () => {
+  const [quizVisible, setQuizVisible] = useState(false);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [selectedOption, setSelectedOption] = useState(null);
+  const [feedback, setFeedback] = useState(null);
+  const [score, setScore] = useState(0);
+  const [quizFinished, setQuizFinished] = useState(false);
+
+  const handleAnswer = (option) => {
+    setSelectedOption(option);
+    if (option === quizQuestions[currentQuestion].answer) {
+      setScore(score + 1);
+      setFeedback("correct");
+    } else {
+      setFeedback("incorrect");
     }
+
+    setTimeout(() => {
+      if (currentQuestion + 1 < quizQuestions.length) {
+        setCurrentQuestion(currentQuestion + 1);
+        setSelectedOption(null);
+        setFeedback(null);
+      } else {
+        setQuizFinished(true);
+      }
+    }, 1500); // Delay to show feedback
+  };
+
+  const restartQuiz = () => {
+    setCurrentQuestion(0);
+    setScore(0);
+    setQuizFinished(false);
+    setSelectedOption(null);
+    setFeedback(null);
   };
 
   return (
@@ -104,42 +185,65 @@ const Page5 = () => {
         <Chart type="bar" data={wordCloudData} className="chart" />
       </section>
 
-      {/* User Contribution Section */}
-      <section className="contribution-section">
-        <h2>Share Your Own Story</h2>
-        <p>
-          Contribute to the evolving tapestry of folklore by sharing a story or
-          myth from your culture or imagination.
-        </p>
-        <div className="input-section">
-          <InputTextarea
-            value={story}
-            onChange={(e) => setStory(e.target.value)}
-            rows={5}
-            cols={50}
-            placeholder="Write your story here..."
-          />
-          <Button
-            label="Submit Story"
-            icon="pi pi-check"
-            className="p-button-rounded submit-button"
-            onClick={handleStorySubmit}
-          />
-        </div>
+      {/* Folklore Quiz Section */}
+      <section className="quiz-section">
+        <h2>Folklore Quiz</h2>
+        <p>Test your knowledge of folklore and mythology!</p>
+        <Button
+          label="Start Quiz"
+          icon="pi pi-play"
+          className="p-button-rounded start-quiz-button"
+          onClick={() => setQuizVisible(true)}
+        />
       </section>
 
-      {/* Submission Dialog */}
+      {/* Quiz Dialog */}
       <Dialog
-        header="Thank You!"
-        visible={dialogVisible}
-        style={{ width: "30vw" }}
+        visible={quizVisible}
+        onHide={() => setQuizVisible(false)}
+        style={{ width: "40vw" }}
         modal
-        onHide={() => setDialogVisible(false)}
+        header="Folklore Quiz"
       >
-        <p>
-          Your story has been submitted and will be part of our folklore
-          archive.
-        </p>
+        {!quizFinished ? (
+          <div className="quiz-dialog">
+            <h3>
+              Question {currentQuestion + 1}/{quizQuestions.length}
+            </h3>
+            <p>{quizQuestions[currentQuestion].question}</p>
+            <div className="quiz-options">
+              {quizQuestions[currentQuestion].options.map((option, index) => (
+                <Button
+                  key={index}
+                  label={option}
+                  className={`p-button-outlined quiz-option ${
+                    feedback === "correct" &&
+                    option === quizQuestions[currentQuestion].answer
+                      ? "correct"
+                      : feedback === "incorrect" && option === selectedOption
+                      ? "incorrect"
+                      : ""
+                  }`}
+                  onClick={() => handleAnswer(option)}
+                  disabled={!!feedback} // Disable other options after answering
+                />
+              ))}
+            </div>
+          </div>
+        ) : (
+          <div className="quiz-result">
+            <h3>Quiz Finished!</h3>
+            <p>
+              You scored {score}/{quizQuestions.length}.
+            </p>
+            <Button
+              label="Restart Quiz"
+              icon="pi pi-replay"
+              className="p-button-rounded restart-button"
+              onClick={restartQuiz}
+            />
+          </div>
+        )}
       </Dialog>
     </div>
   );

@@ -76,6 +76,18 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Timeline Animation */
+.timeline-page1 .p-timeline-event-content {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+.timeline-page1 .p-timeline-event-content.animate-timeline {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Impact Panel Styling */
 .impact-panel {
   margin-top: 2em;

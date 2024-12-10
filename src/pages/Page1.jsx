@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Accordion, AccordionTab } from "primereact/accordion";
 import { Card } from "primereact/card";
 import { DataView } from "primereact/dataview";
@@ -88,6 +88,8 @@ const Page1 = () => {
   const [dialogTitle, setDialogTitle] = useState("");
   const [dialogText, setDialogText] = useState("");
   const [dialogImage, setDialogImage] = useState("");
+  const timelineRef = useRef(null);
+  const timelineContainerRef = useRef(null);
 
   const handleImageClick = (imageSrc, dialogTitle, dialogText) => {
     setDialogImage(imageSrc);
@@ -95,6 +97,28 @@ const Page1 = () => {
     setDialogText(dialogText);
     setDialogVisible(true);
   };
+
+  useEffect(() => {
+    const timelineObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("animate-timeline");
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const timelineElements = timelineContainerRef.current.querySelectorAll(
+      ".p-timeline-event-content"
+    );
+    timelineElements.forEach((el) => timelineObserver.observe(el));
+
+    return () => {
+      timelineElements.forEach((el) => timelineObserver.unobserve(el));
+    };
+  }, []);
 
   const itemTemplate = (example) => (
     <Card
@@ -138,9 +162,10 @@ const Page1 = () => {
       <Accordion className="key-elements">
         <AccordionTab header="Myths">
           <p>
-            Myths are sacred narratives that explain the origins of the world,
-            humanity, or societal customs. They often involve gods, supernatural
-            beings, and heroes.
+            Myths are traditional stories, especially ones concerning the early
+            history of a people or explaining a natural or social phenomenon,
+            and typically involving supernatural beings or events. They often
+            involve gods, supernatural beings, and heroes.
           </p>
           <ul>
             <li>
@@ -246,19 +271,20 @@ const Page1 = () => {
       </Accordion>
 
       {/* Timeline Section */}
-      <h2 className="timeline-header">The Evolution of Folklore</h2>
-      <Timeline
-        value={folkloreTimeline}
-        align="alternate"
-        content={(item) => (
-          <div>
-            <h3>{item.period}</h3>
-            <h4>{item.event}</h4>
-            <p>{item.description}</p>
-          </div>
-        )}
-        className="timeline"
-      />
+      <div ref={timelineContainerRef} className="timeline-page1">
+        <Timeline
+          value={folkloreTimeline}
+          align="alternate"
+          content={(item) => (
+            <div>
+              <h3>{item.period}</h3>
+              <h4>{item.event}</h4>
+              <p>{item.description}</p>
+            </div>
+          )}
+          className="timeline"
+        />
+      </div>
 
       {/* Impact of Folklore Section */}
       <Panel header="The Impact of Folklore" className="impact-panel">

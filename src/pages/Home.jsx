@@ -56,9 +56,8 @@ const Home = () => {
       >
         <h1>Folklore in Modern Literature & Culture</h1>
         <p>
-          Here, we will explore how ancient myths, legends, and folktales
-          continue to shape the stories we tell today and influence cultural
-          identities worldwide.
+          Dive into the world of ancient myths, legends, and folktales, and see
+          how they continue to shape our stories and cultural identities today.
         </p>
         <Button
           label="Find Out More"

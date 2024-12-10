@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Timeline } from "primereact/timeline";
 import { Carousel } from "primereact/carousel";
 import { Panel } from "primereact/panel";
@@ -96,6 +96,32 @@ const bookTemplate = (book) => (
 );
 
 const Page2 = () => {
+  const [visibleEvents, setVisibleEvents] = useState([]);
+
+  const timelineRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const index = parseInt(entry.target.getAttribute("data-index"), 10);
+            setVisibleEvents((prev) => [...new Set([...prev, index])]);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    const elements = timelineRef.current.querySelectorAll(".timeline-item");
+    elements.forEach((el, index) => {
+      el.setAttribute("data-index", index);
+      observer.observe(el);
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="page-container">
       {/* TabMenu for Navigation */}
@@ -115,20 +141,23 @@ const Page2 = () => {
       </Panel>
 
       {/* Timeline Section */}
-      <h2 className="section-header">
-        Thematic Evolution of Folklore in Literature
-      </h2>
-      <Timeline
-        value={timelineEvents}
-        align="alternate"
-        content={(item) => (
-          <div>
-            <h3>{item.title}</h3>
-            <h4>{item.date}</h4>
-            <p>{item.description}</p>
-          </div>
-        )}
-      />
+      <div ref={timelineRef} className="timeline-page2">
+        <Timeline
+          value={timelineEvents}
+          align="alternate"
+          content={(item, index) => (
+            <div
+              className={`timeline-item ${
+                visibleEvents.includes(index) ? "visible" : ""
+              }`}
+            >
+              <h3>{item.title}</h3>
+              <h4>{item.date}</h4>
+              <p>{item.description}</p>
+            </div>
+          )}
+        />
+      </div>
 
       {/* Character Archetypes Panel */}
       <Panel
@@ -141,34 +170,19 @@ const Page2 = () => {
         </p>
         <ul>
           <li>
-            <b>The Hero:</b> A courageous figure who embarks on a journey to
-            overcome challenges. Examples: Frodo Baggins{" "}
-            <strong>(The Lord of the Rings)</strong>, Harry Potter{" "}
-            <strong>(Harry Potter series)</strong>, Katniss Everdeen{" "}
-            <strong>(The Hunger Games)</strong>.
+            <b>The Hero:</b> Frodo Baggins, Harry Potter, Katniss Everdeen.
           </li>
           <li>
-            <b>The Trickster:</b> A clever character who uses wit to outmaneuver
-            others. Examples: Anansi the Spider, Loki{" "}
-            <strong>(Norse Mythology)</strong>, Puck{" "}
-            <strong>(A Midsummer Night's Dream)</strong>.
+            <b>The Trickster:</b> Anansi the Spider, Loki, Puck.
           </li>
           <li>
-            <b>The Wise Mentor:</b> A guide who imparts wisdom and aids the
-            hero. Examples: Gandalf <strong>(The Lord of the Rings)</strong>,
-            Dumbledore <strong>(Harry Potter series)</strong>, Haymitch{" "}
-            <strong>(The Hunger Games)</strong>.
+            <b>The Wise Mentor:</b> Gandalf, Dumbledore, Haymitch.
           </li>
           <li>
-            <b>The Villain:</b> A figure embodying conflict, often representing
-            greed or tyranny. Examples: Sauron{" "}
-            <strong>(The Lord of the Rings)</strong>, Voldemort{" "}
-            <strong>(Harry Potter series)</strong>.
+            <b>The Villain:</b> Sauron, Voldemort.
           </li>
           <li>
-            <b>The Guardian:</b> Protects valuable secrets or treasures and
-            tests the hero's resolve. Examples: Smaug{" "}
-            <strong>(The Hobbit)</strong>.
+            <b>The Guardian:</b> Smaug.
           </li>
         </ul>
       </Panel>

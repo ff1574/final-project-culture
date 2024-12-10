@@ -38,6 +38,18 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Timeline Animation */
+.timeline-page2 .timeline-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
+}
+
+.timeline-page2 .timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 /* Archetypes Panel Styling */
 .archetypes-panel {
   margin-top: 2em;

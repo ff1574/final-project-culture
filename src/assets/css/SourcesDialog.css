@@ -1,0 +1,29 @@
+.source-card {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+.source-card .p-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #003366;
+}
+
+.source-card .p-card-subtitle {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.source-link {
+  display: inline-block;
+  color: #0366d6;
+  text-decoration: none;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.source-link:hover {
+  text-decoration: underline;
+}
